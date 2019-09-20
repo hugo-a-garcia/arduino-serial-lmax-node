@@ -1,0 +1,14 @@
+{
+  "name": "serial-dump",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "node app.js"
+  },
+  "author": "hugo",
+  "license": "MIT",
+  "dependencies": {
+    "serialport": "^7.1.5"
+  }
+}
