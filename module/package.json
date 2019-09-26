@@ -9,6 +9,8 @@
   "author": "hugo",
   "license": "MIT",
   "dependencies": {
-    "serialport": "^7.1.5"
+    "minimist": "^1.2.0",
+    "serialport": "^7.1.5",
+    "shared-memory-disruptor": "^2.0.3"
   }
 }
