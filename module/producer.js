@@ -1,6 +1,6 @@
 const SerialPort = require("serialport");
 let Disruptor = require('shared-memory-disruptor').Disruptor;
-let disruptor = new Disruptor('/example', 1000, 4, 1, -1, true, true);
+let disruptor = new Disruptor('/example', 100, 11, 1, -1, true, true);
 
 module.exports = function (produce) {
 
