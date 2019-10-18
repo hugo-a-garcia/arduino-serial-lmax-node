@@ -1,28 +1,31 @@
-const { parentPort} = require('worker_threads');
-let Disruptor = require('shared-memory-disruptor').Disruptor;
+//const { parentPort } = require('worker_threads');
+const Disruptor = require('shared-memory-disruptor').Disruptor;
 
-let disruptor = new Disruptor('/example', 100, 11, 1, 0, false, true);
+const disruptor = new Disruptor('/example', 1000, 11, 1, 0, false, true);
 
-var text = "";
-var i = 0;
-do {
-    text = i++;
-    console.log(text);
-    console.log("do");
-    disruptor.consumeNew(() => {
-        console.log("consume");
-        var bufs = disruptor.consumeNewSync();
-        for (let buf of bufs) {
-            for (let j = 0; j < buf.length; j += 11) {
-                console.log(buf.length);
-                console.log(buf.toString());
+async function test() {
+    try {
+        var i = 0;
+        console.log("===============\n");
+        while (i < 100) {
+            console.log("waiting");
+            const { bufs } = await disruptor.consumeNew();
+            console.log("consumed");
+            for (let buf of bufs) {
+                for (let j = 0; j < buf.length; j += 15) {
+                    console.log(buf.slice(0,11).toString() + " " + i + "\n");
+                    i += 1;
+                }
             }
+            disruptor.consumeCommit();
         }
-        disruptor.consumeCommit();
-    });
-} while (i < 5);
-console.log("El FIN");
+    } catch (error) {
+        console.log("====> " + error.toString());
+    }
+}
 
-parentPort.postMessage("I am finito");
+test();
+
+//parentPort.postMessage("I am finito");
 //d.release();
 

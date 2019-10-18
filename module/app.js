@@ -7,8 +7,8 @@ const produce = require('./producer.js');
 var args = require('minimist')(process.argv.slice(2));
 
 if (args.p == true) {
-    console.log("WOW ");
-    produce();
+    console.log("Producer");
+    produce.produce();
 }
 
 if (args.c == true) {
