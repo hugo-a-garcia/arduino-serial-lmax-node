@@ -9,7 +9,7 @@
   "author": "hugo",
   "license": "MIT",
   "dependencies": {
-    "minimist": "^1.2.0",
+    "minimist": "^1.2.6",
     "serialport": "^7.1.5",
     "shared-memory-disruptor": "^3.0.0"
   }
